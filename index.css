@@ -1,0 +1,71 @@
+*{
+  box-sizing: border-box;
+}
+body {
+  background: rgb(189, 189, 189);
+  margin: 0;
+}
+
+.hover:hover{
+  opacity: 0.7;
+  cursor: pointer;
+}
+.wrapper{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todo{
+  background: white;
+  min-width: 500px;
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+}
+.lists {
+}
+.item{
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #5adf5a;
+  background: #5adf5a;
+  margin-bottom: 4px;
+}
+.done{
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 20px;
+}
+.true{
+  background: #68ff2c;
+  border: 1px solid #46b11c;
+}
+.false{
+  background: gray;
+  border: 1px solid black;
+}
+.text{
+  width: calc(100% - 100px)
+}
+.button{
+  width: 50px;
+  padding: 6px 4px;
+  cursor: pointer;
+}
+.edit{
+  background: blue;
+  color: white;
+  margin-right: 4px;
+}
+.delete{
+  background: red;
+  color: white;
+}
