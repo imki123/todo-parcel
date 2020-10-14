@@ -70,7 +70,7 @@ body {
   padding: 10px;
   border-radius: 50%;
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 .done.true{
   background: rgb(95, 95, 95);
@@ -82,6 +82,20 @@ body {
 }
 .text{
   width: calc(100% - 100px)
+}
+textarea{
+  width: 100%;
+  font-size: inherit;
+  resize: none;
+}
+textarea.true{
+  background: white;
+}
+textarea.false{
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: black;
 }
 .text.true{
   text-decoration: line-through;
