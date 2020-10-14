@@ -13,7 +13,7 @@ let lists = [
   },
 ]
 
-let length = lists.length
+let count = lists.length
 
 function refresh() {
   console.log('refresh')
@@ -25,35 +25,47 @@ function refresh() {
 
     if (i.edit)
       html += `<div class="text"><textarea class="${i.edit}">${i.text}</textarea></div>
-    <button class="button edit hover">저장</button>
-      <button class="button delete hover">삭제</button>
-    </div>`
+        <button class="button edit hover">저장</button>
+        <button class="button delete hover">삭제</button>
+      </div>`
     else
       html += `<div class="text"><textarea class="${i.edit}" disabled>${i.text}</textarea></div>
-    <button class="button edit hover">수정</button>
-      <button class="button delete hover">삭제</button>
-    </div>`
+        <button class="button edit hover">수정</button>
+        <button class="button delete hover">삭제</button>
+      </div>`
   }
   const list = document.querySelector('.lists')
   if (list) list.innerHTML = html
 
-  const item = document.querySelectorAll('.item')
-  for (let i of item) {
+  const dones = document.querySelectorAll('.done')
+  for (let i of dones) {
     i.onclick = function () {
-      toggleDone(Number(i.id.replace('item_', '')))
+      toggleDone(Number(i.parentNode.id.replace('item_', '')))
+      refresh()
+    }
+  }
+
+  const deletes = document.querySelectorAll('.delete')
+  for (let i of deletes) {
+    i.onclick = function () {
+      deleteItem(Number(i.parentNode.id.replace('item_', '')))
       refresh()
     }
   }
 }
 
 function addItem() {
-  length++
+  count++
   lists.push({
-    _id: length,
+    _id: count,
     text: '',
     done: false,
     edit: true,
   })
+}
+
+function deleteItem(_id) {
+  lists = lists.filter(i => i._id !== _id)
 }
 
 function toggleDone(_id) {
