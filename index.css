@@ -23,18 +23,46 @@ body {
   width: 80%;
   padding: 10px;
   border-radius: 10px;
+  position: relative;
 }
 .lists {
+  
+}
+.add{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: blue;
+  border: 2px solid darkblue;
+  bottom: -15px;
+  left: 50%;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add:hover{
+  background: #5255ff;
+  border: 2px solid blue;
 }
 .item{
+  font-size: 1.2rem;
   width: 100%;
   padding: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #5adf5a;
   background: #5adf5a;
+  border: 1px solid #5adf5a;
   margin-bottom: 4px;
+  border-radius: 10px;
+}
+.item.true{
+  background: gray;
 }
 .done{
   width: 30px;
@@ -44,18 +72,22 @@ body {
   cursor: pointer;
   margin-right: 20px;
 }
-.true{
-  background: #68ff2c;
-  border: 1px solid #46b11c;
-}
-.false{
-  background: gray;
+.done.true{
+  background: rgb(95, 95, 95);
   border: 1px solid black;
+}
+.done.false{
+  background: #30ff30;
+  border: 1px solid #46b11c;
 }
 .text{
   width: calc(100% - 100px)
 }
+.text.true{
+  text-decoration: line-through;
+}
 .button{
+  border-radius: 10px;
   width: 50px;
   padding: 6px 4px;
   cursor: pointer;
