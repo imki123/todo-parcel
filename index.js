@@ -32,7 +32,6 @@ function refresh() {
   for (let i of dones) {
     i.onclick = function () {
       toggleDone(Number(i.parentNode.id.replace('item_', '')))
-      refresh()
     }
   }
 
@@ -41,7 +40,14 @@ function refresh() {
   for (let i of deletes) {
     i.onclick = function () {
       deleteItem(Number(i.parentNode.id.replace('item_', '')))
-      refresh()
+    }
+  }
+
+  //textarea onchange 이벤트 시 lists 업데이트
+  const texts = document.querySelectorAll('textarea')
+  for (let i of texts) {
+    i.onchange = function () {
+      changeText(Number(i.parentNode.parentNode.id.replace('item_', '')))
     }
   }
 }
@@ -58,12 +64,21 @@ function addItem() {
 
 //삭제 클릭하면 item 삭제
 function deleteItem(_id) {
-  lists = lists.filter(i => i._id !== _id)
+  lists = lists.filter((i) => i._id !== _id)
 }
 
 //done 클릭하면 item의 스타일 변경
 function toggleDone(_id) {
   lists = lists.map((i) => (i._id === _id ? { ...i, done: !i.done } : i))
+}
+
+//textarea 변경되면 lists 변경
+function changeText(_id) {
+  const textEl = document.querySelector(`#item_${_id}`)
+  let text = ''
+  if (textEl) text = textEl.querySelector('textarea').value
+  console.log(text)
+  lists = lists.map((i) => (i._id === _id ? { ...i, text: text } : i))
 }
 
 window.addEventListener('load', function () {
@@ -73,6 +88,6 @@ window.addEventListener('load', function () {
     addItem()
     refresh()
     const texts = document.querySelectorAll('textarea')
-    texts[texts.length -1].focus()
+    texts[texts.length - 1].focus()
   }
 })
