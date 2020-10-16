@@ -44,8 +44,9 @@ function refresh() {
   //done 이벤트 추가
   const dones = document.querySelectorAll('.done')
   for (let i of dones) {
+    let _id = Number(i.parentNode.id.replace('item_', ''))
     i.onclick = function () {
-      toggleDone(Number(i.parentNode.id.replace('item_', '')))
+      toggleDone(_id)
     }
   }
 
@@ -95,13 +96,17 @@ function addItem() {
 //삭제 클릭하면 item 삭제하고 refresh()
 function removeItem(_id) {
   lists = lists.filter((i) => i._id !== _id)
+  let scroll = document.body.scrollTop
   refresh()
+  document.body.scrollTop = scroll
 }
 
 //done 클릭하면 item의 스타일 변경하고 refresh()
 function toggleDone(_id) {
   lists = lists.map((i) => (i._id === _id ? { ...i, done: !i.done } : i))
+  let scroll = document.body.scrollTop
   refresh()
+  document.body.scrollTop = scroll
 }
 
 //textarea 변경되면 lists 변경
