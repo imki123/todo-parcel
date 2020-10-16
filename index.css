@@ -1,38 +1,43 @@
-*{
+* {
   box-sizing: border-box;
 }
-html, body {
+html,
+body {
   height: 100vh;
   width: 100%;
   background: rgb(189, 189, 189);
   margin: 0;
-  overflow: auto;
 }
 
-.hover:hover{
+.hidden {
+  position: absolute;
+  top: -1000000px;
+  opacity: 0;
+}
+.hover:hover {
   opacity: 0.7;
   cursor: pointer;
 }
-.wrapper{
+.wrapper {
   height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.todo{
+.todo {
   background: white;
   min-width: 500px;
   width: 80%;
   padding: 10px;
   border-radius: 10px;
   position: relative;
-  margin: 20px auto;
+  /* margin: 20px auto; */
 }
 .lists {
 }
 
-.item{
+.item {
   font-size: 1.2rem;
   width: 100%;
   padding: 8px;
@@ -44,10 +49,10 @@ html, body {
   margin-bottom: 4px;
   border-radius: 10px;
 }
-.item.true{
+.item.true {
   background: gray;
 }
-.button{
+.button {
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -59,47 +64,55 @@ html, body {
   color: white;
   font-size: 2rem;
 }
-.done{
+.done {
   margin-right: 10px;
 }
-.done.true{
+.done.true {
   background: rgb(95, 95, 95);
   border: 1px solid black;
 }
-.done.false{
+.done.false {
   background: #30ff30;
   border: 1px solid #46b11c;
 }
-.text{
-  width: calc(100% - 100px)
+.text {
+  width: calc(100% - 100px);
 }
-textarea{
+textarea {
   width: 100%;
-  font-size: inherit;
+  font-size: 1.2rem;
   resize: none;
   background: transparent;
   border: 0;
   color: black;
 }
-textarea:focus{
+textarea:focus {
   outline: 0;
   outline: 1px solid green;
 }
-textarea.true{
+textarea.true {
   text-decoration: line-through;
 }
 
-.add{
+.add {
   position: absolute;
   background: blue;
   border: 2px solid darkblue;
   bottom: -15px;
-  left: 50%;
+  left: calc(50% - 20px);
 }
-.add:hover{
+.add:hover {
   background: #5255ff;
   border: 2px solid blue;
 }
-.delete{
+.delete {
   background: red;
+}
+
+@media (max-width: 500px) {
+  .todo {
+    min-width: unset;
+    width: 100%;
+    padding: 10px;
+  }
 }
