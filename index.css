@@ -9,6 +9,9 @@ body {
   margin: 0;
 }
 
+h1{
+  text-align: center;
+}
 .hidden {
   position: absolute;
   top: -1000000px;
@@ -44,8 +47,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #5adf5a;
-  border: 1px solid #5adf5a;
+  background: white;
+  border: 1px solid black;
   margin-bottom: 4px;
   border-radius: 10px;
 }
@@ -66,14 +69,16 @@ body {
 }
 .done {
   margin-right: 10px;
+  border: 1px solid black;
+}
+.done img{
+  width: 24px;
 }
 .done.true {
   background: rgb(95, 95, 95);
-  border: 1px solid black;
 }
 .done.false {
   background: #30ff30;
-  border: 1px solid #46b11c;
 }
 .text {
   width: calc(100% - 100px);
@@ -105,8 +110,14 @@ textarea.true {
   background: #5255ff;
   border: 2px solid blue;
 }
-.delete {
+.add img{
+  width: 24px;
+}
+.remove {
   background: red;
+}
+.remove img{
+  width: 20px;
 }
 
 @media (max-width: 500px) {

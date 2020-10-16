@@ -14,7 +14,6 @@ let lists = [
 
 //리스트 개수
 let count = lists.length
-
 // refresh. 변경시 리스트를 다시 렌더링하는 함수
 function refresh() {
   console.log('refresh')
@@ -22,13 +21,27 @@ function refresh() {
   let html = ''
   for (let i of lists) {
     html += `<div id="item_${i._id}" class="item ${i.done}">
-    <div class="button done hover ${i.done}"></div>
+    
+    <div class="button done hover ${i.done}">
+      <img class="check"/>
+    </div>
       <div class="text"><textarea class="${i.done}">${i.text}</textarea></div>
-      <div class="button delete hover">-</div>
+      <div class="button remove hover">
+        <img class="remove"/>
+      </div>
     </div>`
   }
   const list = document.querySelector('.lists')
   if (list) list.innerHTML = html
+
+  //img src 동적 설정. parcel 때문에.
+  for(let i of document.querySelectorAll('.check')){
+    i.src = document.querySelector('#check').src
+  }
+  for(let i of document.querySelectorAll('.remove')){
+    i.src = document.querySelector('#remove').src
+  }
+
 
   //add 이벤트 추가
   const add = document.querySelector('.add')
@@ -45,11 +58,11 @@ function refresh() {
     }
   }
 
-  //delete 이벤트 추가
-  const deletes = document.querySelectorAll('.delete')
-  for (let i of deletes) {
+  //remove 이벤트 추가
+  const removes = document.querySelectorAll('.remove')
+  for (let i of removes) {
     i.onclick = function () {
-      deleteItem(Number(i.parentNode.id.replace('item_', '')))
+      removeItem(Number(i.parentNode.id.replace('item_', '')))
     }
   }
 
@@ -88,7 +101,7 @@ function addItem() {
 }
 
 //삭제 클릭하면 item 삭제하고 refresh()
-function deleteItem(_id) {
+function removeItem(_id) {
   lists = lists.filter((i) => i._id !== _id)
   refresh()
 }
