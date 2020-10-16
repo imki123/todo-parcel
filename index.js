@@ -62,14 +62,17 @@ function addItem() {
   })
 }
 
-//삭제 클릭하면 item 삭제
+//삭제 클릭하면 item 삭제하고 refresh()
 function deleteItem(_id) {
   lists = lists.filter((i) => i._id !== _id)
+  refresh()
 }
 
-//done 클릭하면 item의 스타일 변경
+//done 클릭하면 item의 스타일 변경하고 refresh()
 function toggleDone(_id) {
+  console.log(_id)
   lists = lists.map((i) => (i._id === _id ? { ...i, done: !i.done } : i))
+  refresh()
 }
 
 //textarea 변경되면 lists 변경
