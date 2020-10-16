@@ -3,13 +3,11 @@ let lists = [
     _id: 1,
     text: 'first item',
     done: false,
-    edit: false,
   },
   {
     _id: 2,
     text: 'second item',
     done: true,
-    edit: false,
   },
 ]
 
@@ -21,22 +19,15 @@ function refresh() {
   let html = ''
   for (let i of lists) {
     html += `<div id="item_${i._id}" class="item ${i.done}">
-    <div class="done hover ${i.done}"></div>`
-
-    if (i.edit)
-      html += `<div class="text"><textarea class="${i.edit}">${i.text}</textarea></div>
-        <button class="button edit hover">저장</button>
-        <button class="button delete hover">삭제</button>
-      </div>`
-    else
-      html += `<div class="text"><textarea class="${i.edit}" disabled>${i.text}</textarea></div>
-        <button class="button edit hover">수정</button>
-        <button class="button delete hover">삭제</button>
-      </div>`
+    <div class="button done hover ${i.done}"></div>
+      <div class="text"><textarea class="${i.done}">${i.text}</textarea></div>
+      <div class="button delete hover">-</div>
+    </div>`
   }
   const list = document.querySelector('.lists')
   if (list) list.innerHTML = html
 
+  //done 이벤트 추가
   const dones = document.querySelectorAll('.done')
   for (let i of dones) {
     i.onclick = function () {
@@ -45,6 +36,7 @@ function refresh() {
     }
   }
 
+  //delete 이벤트 추가
   const deletes = document.querySelectorAll('.delete')
   for (let i of deletes) {
     i.onclick = function () {
@@ -54,20 +46,22 @@ function refresh() {
   }
 }
 
+//add버튼 클릭하면 item 추가하고 focus
 function addItem() {
   count++
   lists.push({
     _id: count,
     text: '',
     done: false,
-    edit: true,
   })
 }
 
+//삭제 클릭하면 item 삭제
 function deleteItem(_id) {
   lists = lists.filter(i => i._id !== _id)
 }
 
+//done 클릭하면 item의 스타일 변경
 function toggleDone(_id) {
   lists = lists.map((i) => (i._id === _id ? { ...i, done: !i.done } : i))
 }
@@ -78,5 +72,7 @@ window.addEventListener('load', function () {
   document.querySelector('.add').onclick = function () {
     addItem()
     refresh()
+    const texts = document.querySelectorAll('textarea')
+    texts[texts.length -1].focus()
   }
 })
