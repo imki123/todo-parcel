@@ -1,3 +1,4 @@
+//초기 lists
 let lists = [
   {
     _id: 1,
@@ -11,8 +12,10 @@ let lists = [
   },
 ]
 
+//리스트 개수
 let count = lists.length
 
+//변경시 리스트를 다시 렌더링하는 함수
 function refresh() {
   console.log('refresh')
   //리스트 그리기
@@ -26,6 +29,12 @@ function refresh() {
   }
   const list = document.querySelector('.lists')
   if (list) list.innerHTML = html
+
+  //add 이벤트 추가
+  const add = document.querySelector('.add')
+  if(add) add.onclick = function () {
+    addItem()
+  }
 
   //done 이벤트 추가
   const dones = document.querySelectorAll('.done')
@@ -52,6 +61,7 @@ function refresh() {
   }
 }
 
+/* 이벤트 함수들 생성 */
 //add버튼 클릭하면 item 추가하고 focus
 function addItem() {
   count++
@@ -60,6 +70,9 @@ function addItem() {
     text: '',
     done: false,
   })
+  refresh()
+  const texts = document.querySelectorAll('textarea')
+  texts[texts.length - 1].focus()
 }
 
 //삭제 클릭하면 item 삭제하고 refresh()
@@ -84,13 +97,9 @@ function changeText(_id) {
   lists = lists.map((i) => (i._id === _id ? { ...i, text: text } : i))
 }
 
+
+
+//로드 완료 후 리프레시
 window.addEventListener('load', function () {
   refresh()
-
-  document.querySelector('.add').onclick = function () {
-    addItem()
-    refresh()
-    const texts = document.querySelectorAll('textarea')
-    texts[texts.length - 1].focus()
-  }
 })
