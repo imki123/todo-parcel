@@ -1,5 +1,5 @@
-# parcel
-***Simple Toto-list using parcel***  
+# Todo parcel
+***Simple Toto list using parcel***  
 https://imki123.github.io/todo_parcel/  
 
 ## How to install
