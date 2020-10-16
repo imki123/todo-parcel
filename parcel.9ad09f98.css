@@ -1,0 +1,23 @@
+#toggle{
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+#toggle.active{
+    background: yellow;
+}
+
+button{
+    cursor: pointer;
+}
+
+#person{
+    width: 250px;
+    margin-top:30px;
+}
+
+/*# sourceMappingURL=/parcel.9ad09f98.css.map */
