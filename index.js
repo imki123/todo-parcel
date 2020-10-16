@@ -23,25 +23,16 @@ function refresh() {
     html += `<div id="item_${i._id}" class="item ${i.done}">
     
     <div class="button done hover ${i.done}">
-      <img class="check"/>
+      <img class="check" src="./images/check.png"/>
     </div>
       <div class="text"><textarea class="${i.done}">${i.text}</textarea></div>
       <div class="button remove hover">
-        <img class="remove"/>
+        <img class="remove" src="./images/remove.png"/>
       </div>
     </div>`
   }
   const list = document.querySelector('.lists')
   if (list) list.innerHTML = html
-
-  //img src 동적 설정. parcel 때문에.
-  for(let i of document.querySelectorAll('.check')){
-    i.src = document.querySelector('#check').src
-  }
-  for(let i of document.querySelectorAll('.remove')){
-    i.src = document.querySelector('#remove').src
-  }
-
 
   //add 이벤트 추가
   const add = document.querySelector('.add')
@@ -69,17 +60,18 @@ function refresh() {
   //textarea onchange 이벤트 시 lists 업데이트
   const texts = document.querySelectorAll('textarea')
   for (let i of texts) {
+    let _id = Number(i.parentNode.parentNode.id.replace('item_', ''))
     i.onchange = function () {
-      changeText(Number(i.parentNode.parentNode.id.replace('item_', '')))
+      changeText(_id)
     }
-    i.onkeyup = function() {
-      resizeTextarea(Number(i.parentNode.parentNode.id.replace('item_', '')))
+    i.onkeyup = function () {
+      resizeTextarea(_id)
     }
-    i.onkeydown = function() {
-      resizeTextarea(Number(i.parentNode.parentNode.id.replace('item_', '')))
+    i.onkeydown = function () {
+      resizeTextarea(_id)
     }
-    i.onfocusout = function() {
-      resizeTextarea(Number(i.parentNode.parentNode.id.replace('item_', '')))
+    i.onfocusout = function () {
+      resizeTextarea(_id)
     }
   }
   resizeTextarea()
@@ -114,8 +106,12 @@ function toggleDone(_id) {
 
 //textarea 변경되면 lists 변경
 function changeText(_id) {
-  const text = document.querySelector(`#item_${_id} textarea`).value
-  lists = lists.map((i) => (i._id === _id ? { ...i, text: text } : i))
+  const $text = document.querySelector(`#item_${_id} textarea`)
+  let text = ''
+  if ($text) {
+    text = $text.value
+    lists = lists.map((i) => (i._id === _id ? { ...i, text: text } : i))
+  }
 }
 
 //textarea를 찾아서 크기를 글자 높이에 맞게 변경하기
@@ -127,7 +123,7 @@ function resizeTextarea(_id) {
       fake.style.height = '0px'
       fake.style.width = textarea.clientWidth + 'px'
       fake.value = textarea.value
-      textarea.style.height = fake.scrollHeight + 'px'
+      textarea.style.height = 8 + fake.scrollHeight + 'px'
       fake.value = ''
       fake.style.height = '0px'
     }
@@ -136,7 +132,7 @@ function resizeTextarea(_id) {
 
   const textareas = document.querySelectorAll('textarea')
   if (fake) {
-    for (let i = 0; i < textareas.length-1; i++) {
+    for (let i = 0; i < textareas.length - 1; i++) {
       fake.style.height = '0px'
       fake.style.width = textareas[i].clientWidth + 'px'
       fake.value = textareas[i].value
