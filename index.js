@@ -42,25 +42,23 @@ function refresh() {
     }
 
   //done 이벤트 추가
-  const dones = document.querySelectorAll('.done')
-  for (let i of dones) {
+  document.querySelectorAll('.done').forEach(i =>{
     let _id = Number(i.parentNode.id.replace('item_', ''))
     i.onclick = function () {
       toggleDone(_id)
     }
-  }
+  })
 
   //remove 이벤트 추가
-  const removes = document.querySelectorAll('.remove')
-  for (let i of removes) {
+  document.querySelectorAll('.remove').forEach((i) => {
+    let _id = Number(i.parentNode.id.replace('item_', ''))
     i.onclick = function () {
-      removeItem(Number(i.parentNode.id.replace('item_', '')))
+      removeItem(_id)
     }
-  }
+  })
 
   //textarea onchange 이벤트 시 lists 업데이트
-  const texts = document.querySelectorAll('textarea')
-  for (let i of texts) {
+  document.querySelectorAll('textarea').forEach(i=> {
     let _id = Number(i.parentNode.parentNode.id.replace('item_', ''))
     i.onchange = function () {
       changeText(_id)
@@ -74,7 +72,7 @@ function refresh() {
     i.onfocusout = function () {
       resizeTextarea(_id)
     }
-  }
+  })
   resizeTextarea()
 }
 // refresh. 변경시 리스트를 다시 렌더링하는 함수 //
