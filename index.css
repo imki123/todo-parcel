@@ -23,9 +23,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: auto;
 }
 .todo {
+  margin: auto;
   background: white;
   min-width: 500px;
   width: 80%;
