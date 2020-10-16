@@ -15,7 +15,7 @@ let lists = [
 //리스트 개수
 let count = lists.length
 
-//변경시 리스트를 다시 렌더링하는 함수
+// refresh. 변경시 리스트를 다시 렌더링하는 함수
 function refresh() {
   console.log('refresh')
   //리스트 그리기
@@ -71,7 +71,7 @@ function refresh() {
   }
   resizeTextarea()
 }
-// 변경시 리스트를 다시 렌더링하는 함수 //
+// refresh. 변경시 리스트를 다시 렌더링하는 함수 //
 
 /* 이벤트 함수들 생성 */
 //add버튼 클릭하면 item 추가하고 focus
@@ -84,7 +84,7 @@ function addItem() {
   })
   refresh()
   const texts = document.querySelectorAll('textarea')
-  texts[texts.length - 1].focus()
+  texts[texts.length - 2].focus()
 }
 
 //삭제 클릭하면 item 삭제하고 refresh()
