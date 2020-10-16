@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
 }
-html,
 body {
   height: 100vh;
   width: 100%;
@@ -9,9 +8,6 @@ body {
   margin: 0;
 }
 
-h1{
-  text-align: center;
-}
 .hidden {
   position: absolute;
   top: -1000000px;
@@ -27,6 +23,7 @@ h1{
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: auto;
 }
 .todo {
   background: white;
@@ -35,7 +32,12 @@ h1{
   padding: 10px;
   border-radius: 10px;
   position: relative;
-  /* margin: 20px auto; */
+}
+.title {
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: bold;
+  padding: 10px 0;
 }
 .lists {
 }
@@ -71,7 +73,7 @@ h1{
   margin-right: 10px;
   border: 1px solid black;
 }
-.done img{
+.done img {
   width: 24px;
 }
 .done.true {
@@ -110,13 +112,13 @@ textarea.true {
   background: #5255ff;
   border: 2px solid blue;
 }
-.add img{
+.add img {
   width: 24px;
 }
 .remove {
   background: red;
 }
-.remove img{
+.remove img {
   width: 20px;
 }
 
